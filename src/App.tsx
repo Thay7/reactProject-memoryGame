@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react'
 import * as C from './App.styles'
+
 import logoImage from './assets/devmemory_logo.png'
 import RestartIcon from './svgs/restart.svg'
+
 import { Button } from './components/Button'
 import { InfoItem } from './components/InfoItem'
+import { GridItem } from './components/GridItem'
+
 import { GridItemType } from './types/gridItemType'
 import { items } from './data/items'
+
 
 const App = () => {
   const [playing, setPlayng] = useState<Boolean>(false)
@@ -29,13 +34,25 @@ const App = () => {
       })
     
     //step 2.2 - fill the grid
-      
+      for(let w = 0; w < 2; w++) {
+        for(let i = 0; i < items.length; i++) {
+          let pos = -1
+          while(pos < 0 || tmpGrid[pos].item !== null) {
+            pos =  Math.floor(Math.random() * (items.length * 2))
+          }
+          tmpGrid[pos].item = i
+        }
+      }
 
     //step 2.3 - put the grid in the state
     setGridItems(tmpGrid)
   
     //step 3 -  start the game
     setPlayng(true)
+  }
+
+  const handleItemClick = (index: number) => {
+
   }
 
   return (
@@ -55,7 +72,13 @@ const App = () => {
         </C.Info>
         <C.GridArea>
           <C.Grid>
-            
+            {gridItems.map((item, index) => (
+              <GridItem 
+              key={index}
+              item={item}
+              onClick={() => handleItemClick(index)}
+              />
+            ))}
           </C.Grid>
         </C.GridArea>
       </C.Container>

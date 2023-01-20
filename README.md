@@ -6,6 +6,8 @@ Clone o projeto, rode-o em sua máquina e divirta-se!!
 
 ### Instalação 
 - `npm install`
+- `npm install styled-components`
+- `npm install -D @types/styled-components` 
 
 ### Para rodar
 - `npm start`

@@ -69,7 +69,9 @@ const App = () => {
 
   //verify if game is over
   useEffect(() => {
-    
+    if(movCount > 0 && gridItems.every(item => item.permanentShown === true)) {
+      setPlayng(false)
+    }
   },[movCount, gridItems])
 
 
